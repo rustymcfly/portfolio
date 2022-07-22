@@ -1,12 +1,11 @@
-import {createI18n} from 'vue-i18n'
+import { createI18n } from 'vue-i18n';
 
 interface MessageContainer {
-    [p: string]: Object
+  [p: string]: Object;
 }
 
-
 function getMessageContainer(): MessageContainer {
-    return {}
+  return {};
 }
 
 /**
@@ -16,22 +15,23 @@ function getMessageContainer(): MessageContainer {
  * See: https://github.com/intlify/vue-i18n-loader#rocket-i18n-resource-pre-compilation
  */
 function loadLocaleMessages() {
-    const locales = require.context('./locales', true, /[A-Za-z0-9-_,\s]+\.json$/i)
-    const messages = getMessageContainer()
-    locales.keys().forEach(key => {
-        const matched = key.match(/([A-Za-z0-9-_]+)\./i)
-        if (matched && matched.length > 1) {
-            const locale = matched[1]
-            messages[locale] = locales(key).default
-        }
-    })
-    return messages
+  const locales = require.context('./locales', true, /[A-Za-z0-9-_,\s]+\.json$/i);
+  const messages = getMessageContainer();
+  locales.keys().forEach(key => {
+    const matched = key.match(/([A-Za-z0-9-_]+)\./i);
+    if (matched && matched.length > 1) {
+      const locale = matched[1];
+      messages[locale] = locales(key).default;
+    }
+  });
+
+  return messages;
 }
 
 export default createI18n({
-    legacy: false,
-    locale: process.env.VUE_APP_I18N_LOCALE || 'en',
-    fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
-// @ts-ignore
-    messages: loadLocaleMessages()
-})
+  legacy: false,
+  locale: process.env.VUE_APP_I18N_LOCALE || 'en',
+  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
+  // @ts-ignore
+  messages: loadLocaleMessages(),
+});

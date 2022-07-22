@@ -5,12 +5,12 @@
   color: #fff;
 }
 
-[data-page="about"] {
+[data-page='about'] {
   background: #0e141e;
-  @extend .text-center
+  @extend .text-center;
 }
 
-[data-page="home"] {
+[data-page='home'] {
   background: #0e141c;
-  @extend .text-center
+  @extend .text-center;
 }

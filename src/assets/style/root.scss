@@ -1,13 +1,19 @@
-@import "~bootstrap";
-@import "transitions";
-@import "backgrounds";
+@import '~bootstrap';
+@import 'transitions';
+@import 'backgrounds';
+@import 'fonts';
 
 * {
   overflow-x: hidden;
 }
 
-html, body, #app {
+html,
+body,
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   height: 100%;
+  @extend .text-barlow;
 
   nav {
     z-index: 1;

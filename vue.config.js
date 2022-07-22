@@ -1,4 +1,4 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
   transpileDependencies: true,
   pluginOptions: {
@@ -8,7 +8,7 @@ module.exports = defineConfig({
       localeDir: 'locales',
       enableLegacy: false,
       runtimeOnly: false,
-      compositionOnly: false
-    }
-  }
-})
+      compositionOnly: false,
+    },
+  },
+});
