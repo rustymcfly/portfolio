@@ -1,0 +1,16 @@
+[data-page] {
+  height: 100%;
+  transition: all 0.3s;
+  padding-top: 50px;
+  color: #fff;
+}
+
+[data-page="about"] {
+  background: #0e141e;
+  @extend .text-center
+}
+
+[data-page="home"] {
+  background: #0e141c;
+  @extend .text-center
+}
