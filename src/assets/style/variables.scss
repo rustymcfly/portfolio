@@ -1,0 +1,55 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/maps';
+@import '~bootstrap/scss/utilities';
+
+$theme-colors: (
+  'dark': $dark,
+);
+$link-decoration: none;
+$body-bg: $dark;
+$body-color: $light;
+$dark: #090f13;
+$utilities: map-merge(
+  $utilities,
+  (
+    'border-top':
+      map-merge(
+        map-get($utilities, 'border-top'),
+        (
+          responsive: true,
+        )
+      ),
+    'border-bottom':
+      map-merge(
+        map-get($utilities, 'border-bottom'),
+        (
+          responsive: true,
+        )
+      ),
+    'border-start':
+      map-merge(
+        map-get($utilities, 'border-start'),
+        (
+          responsive: true,
+        )
+      ),
+    'border-end':
+      map-merge(
+        map-get($utilities, 'border-end'),
+        (
+          responsive: true,
+        )
+      ),
+    'border':
+      map-merge(
+        map-get($utilities, 'border'),
+        (
+          responsive: true,
+        )
+      ),
+  )
+);
+
+@import '~bootstrap';
