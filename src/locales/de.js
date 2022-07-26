@@ -1,4 +1,6 @@
-export default {
+export const locale = 'de-DE'
+
+export const language = {
   common: {
     prev: '<<',
     next: '>>',

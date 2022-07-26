@@ -1,4 +1,5 @@
 import { createI18n, LocaleMessages, VueMessageType } from 'vue-i18n'
+import * as de from './locales/de'
 
 /**
  * Load locale messages
@@ -7,17 +8,12 @@ import { createI18n, LocaleMessages, VueMessageType } from 'vue-i18n'
  * See: https://github.com/intlify/vue-i18n-loader#rocket-i18n-resource-pre-compilation
  */
 function loadLocaleMessages(): LocaleMessages<VueMessageType> {
-  const locales = require.context('./locales', true, /[A-Za-z0-9-_,\s]+\.js$/i)
-  const messages: LocaleMessages<VueMessageType> = {}
-  locales.keys().forEach((key) => {
-    const matched = key.match(/([A-Za-z0-9-_]+)\./i)
-    if (matched && matched.length > 1) {
-      const locale = matched[1]
-      messages[locale] = locales(key).default
-    }
-  })
-  return messages
+  const locales = {}
+  Object.defineProperty(locales, de.locale, { get: () => de.language })
+  console.log(locales)
+  return locales
 }
+
 const dateTimeFormats = {
   'en-US': {
     short: {
@@ -34,7 +30,7 @@ const dateTimeFormats = {
       minute: 'numeric',
     },
   },
-  de: {
+  'de-DE': {
     short: {
       year: 'numeric',
       month: 'short',
@@ -51,10 +47,11 @@ const dateTimeFormats = {
     },
   },
 }
+
 export default createI18n({
   dateTimeFormats,
   legacy: false,
-  locale: process.env.VUE_APP_I18N_LOCALE || 'en',
-  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
+  locale: import.meta.env.VITE_I18N_LOCALE || 'en-US',
+  fallbackLocale: import.meta.env.VITE_I18N_FALLBACK_LOCALE || 'en-US',
   messages: loadLocaleMessages(),
 })

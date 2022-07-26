@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = Object.entries({
   return {
     path: path,
     name: name,
-    component: require(`@/views/${name}/index.vue`).default,
+    component: () => import(`@/views/${name}.vue`),
   }
 })
 

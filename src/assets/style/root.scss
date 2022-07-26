@@ -2,10 +2,7 @@
 @import 'transitions';
 @import 'backgrounds';
 @import 'fonts';
-
-* {
-  overflow-x: hidden;
-}
+@import 'simplebar/dist/simplebar.css';
 
 html,
 body,

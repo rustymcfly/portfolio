@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:vue/essential",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "@vue/eslint-config-typescript"
+  ],
+  "rules": {
+    "vue/no-multiple-template-root": "off",
+    "no-extra-semi": "off"
+  }
+}

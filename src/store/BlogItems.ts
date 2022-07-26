@@ -47,21 +47,22 @@ export default class BlogItems {
     this._source = 'Blog'
   }
 
-  load(page = 1) {
+  async load(page = 1) {
     this._items = []
-    const context = require.context('@/assets')
-    const blog = context.keys().filter((path) => {
-      return path.includes(this.source)
-    })
-    this._maxItems = blog.length
-    blog.map((entry, index) => {
-      if (page * this._itemsPerPage > index + 1 && page * this._itemsPerPage < index + this._itemsPerPage + 1) {
-        const date = entry.replace(`./${this.source}/`, '').split('.')
-        const item = context(entry)
-        this.set(date[0], date[1], item)
+    const metaFiles = import.meta.glob(
+      ['@/assets/**/*.json', '@/assets/**/*.html'],
+      { eager: true, as: 'raw' }
+    )
+    for (const [index, entry] of Object.entries(metaFiles)) {
+      if (index.includes(this.source)) {
+        const date = index.replace(`/src/assets/${this.source}/`, '').split('.')
+        this.set(
+          date[0],
+          date[1],
+          index.includes('.json') ? JSON.parse(entry) : entry
+        )
       }
-    })
-    console.log(this.get())
+    }
     return this.get()
   }
 
