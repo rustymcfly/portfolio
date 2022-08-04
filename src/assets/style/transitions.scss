@@ -1,52 +1,27 @@
-.slide-enter-active {
-  transition: transform 0.3s ease-out;
+.scale-slide-enter-active,
+.scale-slide-leave-active {
   position: absolute;
-  top: 0;
-  height: 100%;
-  padding-top: 50px;
+  transition: all 0.85s ease;
+}
+
+.scale-slide-enter-from {
+  left: -100%;
+}
+
+.scale-slide-enter-to {
+  left: 0;
+}
+
+.scale-slide-leave-from {
   left: 0;
   right: 0;
   margin: auto;
-  .enter-fade {
-    transition: opacity 0.1s ease-out;
-    opacity: 0;
-  }
+  transform: scale(1);
+  opacity: 1;
 }
 
-.slide-leave-active {
-  transition: transform 0.3s cubic-bezier(1, 0.5, 0.8, 1);
-  position: absolute;
-  top: 0;
-  height: 100%;
-  padding-top: 50px;
-  left: 0;
-  right: 0;
-  margin: auto;
+.scale-slide-leave-to {
+  opacity: 0;
 
-  .enter-fade {
-    transition: opacity 0.1s ease-out;
-    opacity: 0;
-  }
-}
-
-.slide-enter-from {
-  transform: translateX(-100vw);
-  .enter-fade {
-    transition: opacity 0.1s ease-out;
-    opacity: 0;
-  }
-}
-.slide-leave-to {
-  transform: translateX(100vw);
-  .enter-fade {
-    transition: opacity 0.1s ease-out;
-    opacity: 0;
-  }
-}
-
-.slide:not(.slide-leave-to, .slide-leave-from, .slide-leave-active, .slide-enter-active) {
-  .enter-fade {
-    transition: opacity 0.3s ease-out 0.5s;
-    opacity: 1;
-  }
+  transform: scale(0.8);
 }

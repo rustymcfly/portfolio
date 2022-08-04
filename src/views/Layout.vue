@@ -1,8 +1,6 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg position-fixed vw-100 top-0 navbar-dark bg-dark"
-  >
-    <a class="navbar-brand text-dancing" href="#">Martin Flogaus</a>
+  <nav class="navbar navbar-expand-lg position-fixed vw-100 top-0 navbar-dark">
+    <a class="navbar-brand text-dancing ps-1" href="#">Martin Flogaus</a>
     <button
       :aria-expanded="collapsed"
       aria-controls="navbar"
@@ -27,18 +25,16 @@
           :to="routeRecord"
         >
           <li :class="{ active: isActive }" class="nav-item text-center">
-            <a v-t="`pages.${route.name}`" :href="href" class="nav-link"></a>
+            <a :href="href" class="nav-link">{{ $t(`pages.${route.name}`) }}</a>
           </li>
         </router-link>
       </ul>
     </div>
   </nav>
   <router-view v-slot="{ Component, route }">
-    <div :data-page="$route.name" class="background" data-simplebar>
-      <transition :name="route.meta.transitionName || 'slide'">
-        <component :is="Component" :class="route.meta.transitionName" />
-      </transition>
-    </div>
+    <transition :name="route.meta.transition || 'scale-slide'">
+      <component :key="route.name" :data-page="route.name" :is="Component" />
+    </transition>
   </router-view>
 </template>
 
@@ -46,7 +42,6 @@
   import { Options, Vue } from 'vue-class-component'
   import { Collapse } from 'bootstrap'
   import { State } from '@/store'
-  import { useI18n } from 'vue-i18n'
 
   @Options({
     data() {
@@ -56,23 +51,18 @@
     },
   })
   export default class Layout extends Vue {
-    setup() {
-      const { t, d } = useI18n() // call `useI18n`, and spread `t` from  `useI18n` returning
-      return { t, d }
-    }
-
     get collapsed(): boolean {
-      return this._collapsed
+      return this.isCollapsed
     }
 
     set collapsed(value: boolean) {
       ;(this.$store.state.navbarCollapsed &&
         this.$store.commit('showNavbar')) ||
         this.$store.commit('hideNavbar')
-      this._collapsed = value
+      this.isCollapsed = value
     }
 
-    private _collapsed = true
+    private isCollapsed = true
 
     public toggle() {
       this.collapsed = !this.collapsed
@@ -82,20 +72,19 @@
       const instance = Collapse.getInstance('nav .collapse')
       instance &&
         instance[!state.navbarCollapsed ? 'show' : 'hide'].call(instance)
-      this._collapsed !== state.navbarCollapsed &&
-        (this._collapsed = state.navbarCollapsed)
+      this.isCollapsed !== state.navbarCollapsed &&
+        (this.isCollapsed = state.navbarCollapsed)
     }
 
     mounted(): void {
-      this._collapsed = this.$store.state.navbarCollapsed
-      try {
-        this.$store.subscribe(this.subscriber, { prepend: true })
+      this.isCollapsed = this.$store.state.navbarCollapsed
+      this.$store.subscribe(this.subscriber, { prepend: true })
+      if (document.querySelector('nav .collapse')) {
         new Collapse('nav .collapse', {
-          toggle: !this._collapsed,
+          toggle: !this.isCollapsed,
         })
-      } catch (e) {
-        console.log(e)
       }
     }
   }
 </script>
+<i18n src="@/locales/de.json" locale="de" />

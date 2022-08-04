@@ -1,7 +1,11 @@
 <template>
-  <div class="container">
-    <h1 v-t="`${$route.name}.headline`" />
-    <BlogComponent :resource-type="$route.name" />
+  <div>
+    <div class="container">
+      <h1>{{ $t(`${$route.name}.headline`) }}</h1>
+      <div data-simplebar>
+        <BlogComponent :resource-type="$route.name" />
+      </div>
+    </div>
   </div>
 </template>
 

@@ -1,10 +1,10 @@
 <template>
-  <div class="vh-100">
+  <div>
     <div
       class="position-absolute d-flex justify-content-center p-5 flex-column h-100"
     >
-      <h3 v-t="'Home.greeting'" class="text-dancing" />
-      <h1 v-t="`${$route.name}.headline`" />
+      <h3 class="text-dancing">{{ $t('Home.greeting') }}</h3>
+      <h1>{{ $t(`${$route.name}.headline`) }}</h1>
     </div>
     <pre id="text" class="d-none"></pre>
     <div
@@ -19,6 +19,7 @@
   import { Vue } from 'vue-class-component'
   import text from '@/assets/images/ascii_head.txt?raw'
   import content from '@/assets/images/ascii_head_content.txt?raw'
+  import { useI18n } from 'vue-i18n'
 
   export default class Home extends Vue {
     created() {

@@ -1,6 +1,8 @@
 <template>
-  <div class="container">
-    <h1 v-t="`${$route.name}.headline`" />
+  <div>
+    <div class="container">
+      <h1>{{ $t(`${$route.name}.headline`) }}</h1>
+    </div>
   </div>
 </template>
 

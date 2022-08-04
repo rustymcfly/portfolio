@@ -21,6 +21,7 @@
     "*": "prettier -w -u"
   },
   "dependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^5.0.1",
     "bootstrap": "^5.2.0",
     "register-service-worker": "^1.7.2",
     "simplebar": "^5.3.8",
@@ -36,9 +37,11 @@
     "@babel/polyfill": "^7.7.0",
     "@intlify/vue-i18n-loader": "^3.0.0",
     "@rollup/plugin-alias": "^3.1.9",
+    "@testing-library/vue": "^6.6.1",
     "@types/bootstrap": "^5.2.0",
     "@types/vue": "^2.0.0",
     "@vitejs/plugin-vue": "^3.0.1",
+    "@vitest/ui": "^0.19.1",
     "@vue/cli-plugin-pwa": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",

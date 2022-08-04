@@ -1,33 +1,17 @@
 @import 'variables';
 @import 'transitions';
-@import 'backgrounds';
+@import 'page';
 @import 'fonts';
 @import 'simplebar/dist/simplebar.css';
 
 html,
 body,
-#layout {
+#Layout {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-
+  height: 100vh;
+  position: relative;
   @extend .text-barlow;
   @extend .overflow-hidden;
-  nav {
-    z-index: 1;
-    .nav-item {
-      .nav-link {
-        transition: font-weight 0.3s;
-        &:hover {
-          @extend .fw-bold;
-        }
-      }
-      &.active {
-        .nav-link {
-          @extend .fw-bold;
-          @extend .text-white;
-        }
-      }
-    }
-  }
+  @import 'nav';
 }
